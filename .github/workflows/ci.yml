@@ -1,0 +1,29 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - dev
+      - feature/*  # Optional: Adjust to trigger on specific branches
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python (or Node.js, Java, etc.)
+        uses: actions/setup-python@v2  # Replace with setup-node, setup-java, etc.
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # For Python; use npm or yarn for Node.js, etc.
+
+      - name: Run tests
+        run: |
+          pytest  # Replace with the command that runs your tests
